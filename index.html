@@ -1,0 +1,1511 @@
+<!DOCTYPE HTML>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <title> Café Luxor menu</title>
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Café Luxor menu">
+        
+        <style>
+
+            
+
+            /* .flex-container {
+                display: flex;
+                flex-direction: row;
+                font-size: 30px;
+                text-align: center;
+            }
+
+            .flex-item-left {
+                background-color: #f1f1f1;
+                padding: 10px;
+                flex: 50%;
+            }
+
+            .flex-item-right {
+                background-color: dodgerblue;
+                padding: 10px;
+                flex: 50%;
+            } */
+        
+            body{
+                margin:0;
+                padding:40px;
+                background: #5b7d42;
+                font-family: Arial, sans-serif;
+            }
+
+            .menu{
+                width:800px;
+                margin:auto;
+                background:#fff;
+                padding:40px;
+                box-sizing: border-box;
+            }
+
+            h1{
+                font-size:42px;
+                font-weight:900;
+                text-transform:uppercase;
+                margin-bottom:30px;
+            }
+
+            .header-row, .top-line{
+                display:grid;
+                grid-template-columns: auto 1fr 100px 100px;
+                align-items: end;
+                gap: 0;
+                /* margin-bottom:15px; */
+            }
+
+            .header-row{
+                font-size:28px;
+                font-weight:bold;
+            }
+
+            .item{
+                margin-bottom: 15px;
+            }
+            /* *{
+                box-sizing: border-box;
+            } */
+
+            .top-line{
+                display:grid;
+                grid-template-columns: auto 1fr 100px 100px;
+                font-size:24px;
+                font-weight:bold;
+            }
+
+            .dots-extended {
+                grid-column: span 2; /* Розтягуємо на дві колонки */
+                border-bottom: 3px dotted #000;
+                margin: 0 10px 4px 10px;
+                height: 0;
+            }
+
+
+            .name{
+                white-space:nowrap;
+                padding-right: 10px;
+                /* text-transform: uppercase; */
+                text-transform: capitalize;
+            }
+
+            .dots{
+                border-bottom: 3px dotted #000;
+                margin: 0 10px 4px 10px;
+                height:0;
+                width:100%;
+            }
+
+            .price{
+                text-align:right;
+                white-space:nowrap;
+            }
+            .desc {
+                font-size: 16px; 
+                font-weight: normal; 
+                color: #555;
+                margin-top: 2px;
+                line-height: 1.2;
+                text-transform: none;
+            }
+
+
+
+            .menu-navigation {
+                display: flex;
+                overflow-x: auto;
+                gap: 12px;
+                padding: 20px 0;
+                background-color: #fff; 
+                white-space: nowrap;
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                border-bottom: 2px solid #5b7d42; 
+                margin-bottom: 20px;
+                
+                -ms-overflow-style: none;  
+                scrollbar-width: none;
+            }
+
+            .nav-item {
+                background-color: #5b7d42; 
+                color: #fff; 
+                padding: 10px 22px;
+                border-radius: 25px;
+                text-decoration: none;
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                font-weight: 900; 
+                text-transform: uppercase; 
+                transition: transform 0.2s, background-color 0.2s;
+                border: 2px solid transparent;
+            }
+
+            .nav-item:hover {
+                background-color: #4a6635; 
+                transform: translateY(-2px);
+            }
+
+            .nav-item:active {
+                transform: scale(0.95);
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+
+
+            #täglich {
+                margin-bottom: 0; /* Убирает отступ снизу у заголовка */
+            }
+
+            #täglich + .desc {
+                margin-top: 0;    /* Убирает отступ сверху у описания */
+                display: block;   /* Гарантирует перенос на новую строку */
+            }
+
+
+
+
+
+            .menu-navigation {
+    display: flex;
+    flex-direction: column; /* Элементы (заголовок и кнопки) встают друг под друга */
+    align-items: center;    /* Центрируем все по горизонтали */
+    padding: 20px 0;
+    background-color: #fff; 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid #5b7d42; 
+    margin-bottom: 20px;
+}
+
+/* Стили для самого заголовка внутри навигации */
+.menu-navigation h1 {
+    margin-bottom: 15px;    /* Отступ до кнопок */
+    margin-top: 0;
+    font-size: 28px;        /* Уменьшим немного размер, чтобы влезло в шапку */
+    text-align: center;
+    width: 100%;
+}
+
+/* Обертка для кнопок, чтобы они прокручивались */
+.nav-links {
+    display: flex;
+    overflow-x: auto;       /* Сохраняем прокрутку кнопок */
+    gap: 12px;
+    width: 100%;
+    padding: 10px 20px;     /* Внутренние отступы по бокам */
+    justify-content: flex-start; /* Кнопки начинаются слева (или center, если их мало) */
+    
+    /* Скрываем скроллбар */
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
+}
+
+.nav-links::-webkit-scrollbar {
+    display: none; /* Скрываем скроллбар для Chrome/Safari */
+}
+
+
+            
+
+
+
+
+
+            @media(max-width:850px){
+                .menu{
+                    width:95%;
+                    padding:15px;
+                }
+
+                /* .item{
+                    font-size:18px;
+                    grid-template-columns:auto 1fr 80px 80px;
+                }
+
+                .header-row, .top-line{
+                    font-size:16px;
+                    grid-template-columns:auto  1fr 75px 75px;
+                    gap: 5px;
+                }  
+               
+
+
+                h1{
+                    font-size:30px;
+                } */
+                .header-row, .top-line {
+                    font-size: 14px; /* Трохи зменшуємо шрифт для мобільних */
+                    grid-template-columns: 1fr auto 60px 60px; /* 1fr дозволяє назві тягнутися */
+                    gap: 2px;
+                    align-items: center; /* Центруємо точки по вертикалі */
+                }
+
+                    .item {
+                        margin-bottom: 20px; /* Збільшуємо відступ між позиціями */
+                    }
+
+                    .name {
+                        white-space: normal; /* ДОЗВОЛЯЄМО перенос назви на новий рядок, якщо вона довга */
+                        font-size: 16px;
+                        line-height: 1.2;
+                    }
+
+                    .dots {
+                        margin: 0 5px 4px 5px; /* Менші відступи для точок */
+                    }
+
+                    h1 {
+                        font-size: 26px; /* Компактніші заголовки */
+                    }
+
+
+
+                .flex-container{
+                    flex-direction: column;
+                }
+
+
+
+                
+            }
+        </style>
+    </head>
+    <body>
+
+
+
+        
+        <div class ="menu">
+            <div>
+
+                
+                <!-- <div class="menu-navigation">
+                    
+                    <a href="#bier-vom-fass" class="nav-item">Alkoholische Getränke</a>
+                    <a href="#spritz" class="nav-item">Spritzer</a>
+                    <a href="#heisse-getränke" class="nav-item">Heisse Getränke</a>
+                    <a href="#non-alkoholische-getränke" class="nav-item">Alkoholfreie Getränke</a>
+                    <a href="#täglich" class="nav-item">Etwas zu essen </a>
+                </div>
+
+                <h1>Luxor Menu</h1> -->
+
+
+                <div class="menu-navigation">
+                     
+                    <h1>MENU</h1>
+                    
+                    <div class="nav-links">
+                        <a href="#bier-vom-fass" class="nav-item">Alkoholische Getränke</a>
+                        <a href="#spritz" class="nav-item">Spritzer</a>
+                        <a href="#heisse-getränke" class="nav-item">Heisse Getränke</a>
+                        <a href="#non-alkoholische-getränke" class="nav-item">Alkoholfreie Getränke</a>
+                        <a href="#täglich" class="nav-item">Etwas zu essen </a>
+                        <a href="#time" class="nav-item">Öffnungzeiten</a>
+                        <a href="#kontakt" class="nav-item">Kontaktieren sie uns</a>
+                    </div>
+                </div>
+                
+
+            
+
+
+                
+
+
+
+                <div class="section">
+                    <h1 id="bier-vom-fass">BIER VOM FASS</h1>
+                    <div class="header-row">
+                        <div></div>
+                        <div></div>
+                        <div style="text-align:right;">0,5L</div>
+                        <div style="text-align:right;">0,3L</div>
+                    </div>
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Stiegl Goldbräu 4,5% (AUT)</div>
+                            <div></div>
+                            <div class="price">€5,60 </div>
+                            <div class="price"> €4,30</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Guinness 4,2% (IRL)</div>
+                            <div></div>
+                            <div class="price">€6,50</div>
+                            <div class="price">€4,90</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">König Ludwig Hell 5% (DT)</div>
+                            <div></div>
+                            <div class="price">€5,80</div>
+                            <div class="price">€4,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">König Ludwig Dunkel 5,1% (DT)</div>
+                            <div></div>
+                            <div class="price">€6,10</div>
+                            <div class="price">€4,80</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Zwettler Saphir Pils 5,3% (AUT)</div>
+                            <div></div>
+                            <div class="price">€5,80</div>
+                            <div class="price">€4,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">River Rye Red Ale 4,4% (IRE)</div>
+                            <div></div>
+                            <div class="price">€6,40</div>
+                            <div class="price">€4,80</div>
+                        </div>
+                    </div>
+
+
+                </div>
+                
+                
+
+                <div class="section">
+                    <h1>FLASCHENBIER</h1>
+                    
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Oberbräu Hell 5% (DE)</div>
+                            <div></div>
+                            <div class="price">0,5L</div>
+                            <div class="price"> €5,70</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Warsteiner Pils N/A (DE)</div>
+                            <div></div>
+                            <div class="price">0,33L</div>
+                            <div class="price">€5,30</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Estrella Galicia 5,5% (ESP)</div>
+                            <div></div>
+                            <div class="price">0,33L</div>
+                            <div class="price">€5,10</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">König Ludwig Weiss 5,5% (DE)</div>
+                            <div></div>
+                            <div class="price">0,5L</div>
+                            <div class="price">€5,70</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Magners Irish Cider (4,5%) (IRL)</div>
+                            <div></div>
+                            <div class="price">0,568L</div>
+                            <div class="price">€6,90</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Zwettler Radler Citruz 2% (AUT)</div>
+                            <div></div>
+                            <div class="price">0,5L</div>
+                            <div class="price">€5,30</div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="section">
+                    <h1>COCKTAILS</h1>
+                    
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Negroni</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price"> €10,80</div>
+                            
+                        </div>
+                        <div class="desc">Beefeater Gin, Campari, Sweeth Vermouth</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Kiev Mule</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€10,90</div>
+                            
+                        </div>
+                        <div class="desc">Vodka, Lime Juice, Thomas Henry Ginger Beer</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Cubra Libre</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€10,90</div>
+                            
+                        </div>
+                        <div class="desc">Rum, Lime Juice, Cola</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Dublin Mule</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€10,90</div>
+                            
+                        </div>
+                        <div class="desc">Whickey, Lime Juice, Thomas Henry Ginger Beer</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Dark and Stormy</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€10,90</div>
+                            
+                        </div>
+                        <div class="desc">Spiced Rum, Lime Juice, Thomas Henry Ginger Beer</div>
+                    </div>
+
+                    
+
+
+                </div>
+                 <div class="section">
+                    <h1>WEIß</h1>
+                    <div class="header-row">
+                        <div></div>
+                        <div></div>
+                        <div style="text-align:right;">1/8</div>
+                        <div style="text-align:right;">Btl.</div>
+                    </div>
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Grüner Veltliner Kamptal DAC</div>
+                            <div></div>
+                            <div class="price">€4,70</div>
+                            <div class="price"> €28</div>
+                            
+                        </div>
+                        <div class="desc">Schloss Gobelsburg, Langenlois (O)</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Gelber Muskateller</div>
+                            <div></div>
+                            <div class="price">€4,70</div>
+                            <div class="price">€28</div>
+                            
+                        </div>
+                        <div class="desc">Skoff Original, Südsteiermark DAC 12,5% (O)</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Wiener Gemischter Satz</div>
+                            
+                            <div></div>
+                            <div class="price">€4,70</div>
+                            <div class="price">€28</div>
+                            
+                        </div>
+                        <div class="desc">Fuhrgassl-Huber, Neustift am Walde 12,5% (O)</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Sauvignon Blanc</div>
+                            
+                            <div></div>
+                            <div class="price">€4,90</div>
+                            <div class="price">€30</div>
+                            
+                        </div>
+                        <div class="desc">Meinhardt Hube, Südsteiermark DAC 12,5% (O)</div>
+                    </div>
+
+                    
+
+                    
+
+
+                </div>
+
+
+
+                <div class="section">
+                    <h1>ROT</h1>
+                    
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Blaufränkisch</div>
+                            <div></div>
+                            <div class="price">€4,80</div>
+                            <div class="price"> €29</div>
+                            
+                        </div>
+                        <div class="desc">Kopfensteiner, Eisenberg (O)</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Zweigelt "Zweifellos"</div>
+                            <div></div>
+                            <div class="price">€4,70</div>
+                            <div class="price">€28</div>
+                            
+                        </div>
+                        <div class="desc">Hannes Reeh (O)</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Cuvee Genesis</div>
+                            
+                            <div></div>
+                            <div class="price">€5,50</div>
+                            <div class="price">€32</div>
+                            
+                        </div>
+                        <div class="desc">Glatzer, Göttlesbrunn (O)</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Pinot Noir</div>
+                            
+                            <div></div>
+                            <div class="price">€4,80</div>
+                            <div class="price">€29</div>
+                            
+                        </div>
+                        <div class="desc">Familie Reinisch, Tattendorf 12,5% (O)</div>
+                    </div>
+                </div>
+
+
+                <div class="section">
+                    
+                    <h1>ROSÉ & SPARKLING</h1>
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Rosé Gemischter Satz</div>
+                            <div></div>
+                            <div class="price">€4,90</div>
+                            <div class="price"> €30</div>
+                            
+                        </div>
+                        <div class="desc">Weixelbaum, Strass (O)</div>
+                    </div>
+
+                    <div class="header-row">
+                        <div></div>
+                        <div></div>
+                        <div style="text-align:right;">1/10</div>
+                        <div style="text-align:right;">Btl.</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Prosecco Etichetta Nera Sp. (O) </div>
+                            <div></div>
+                            <div class="price">€5,10</div>
+                            <div class="price">€29</div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+
+                <div class="section">
+                    <h1 id="spritz">SPRITZER</h1>
+                    
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">White Spritzer</div>
+                            <div></div>
+                            <div class="price">0,25L  </div>
+                            <div class="price">€3,60</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">White Spritzer</div>
+                            <div></div>
+                            <div class="price">0,5L  </div>
+                            <div class="price">€6,40</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Summer Spritzer</div>
+                            <div></div>
+                            <div class="price">0,5L</div>
+                            <div class="price">€5,60</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Kaiser Spritzer</div>
+                            <div></div>
+                            <div class="price">0,25L</div>
+                            <div class="price">€4,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Hugo Royale </div>
+                            <div></div>
+                            <div class="price">0,25L</div>
+                            <div class="price">€7,00</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Almdudler Spritzer</div>
+                            <div></div>
+                            <div class="price">0,25L</div>
+                            <div class="price">€4,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Mimosa</div>
+                            <div></div>
+                            <div class="price">0,25L</div>
+                            <div class="price">€6,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Aperol Prosecco</div>
+                            <div></div>
+                            <div class="price">0,25L</div>
+                            <div class="price">€7,00</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Campari Spritz</div>
+                            <div></div>
+                            <div class="price">0,25L</div>
+                            <div class="price">€7,00</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Sarti Spritz</div>
+                            <div></div>
+                            <div class="price">0,25L</div>
+                            <div class="price">€7,00</div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+                <div class="section">
+                    <h1>MIXGETRÄNKE</h1>
+                    
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Hendricks Gin & Tonic</div>
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price">€3,60</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Jameson and Cola</div>
+                            <div></div>
+                            <div class="price"> </div>
+                            <div class="price">€9,90</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Jack Daniels and Cola (O)</div>
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price">€9,90</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Brugal Blanco and Cola</div>
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price">€9,90</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Stoli Vodka and Cola</div>
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price">€9,90</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Averna Makava</div>
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price">€9,90</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Campari Soda</div>
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price">€6,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Camapri Orange</div>
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price">€7,90</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Vodka Eistee</div>
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price">€9,90</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Wodka Wellness</div>
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price">€9,10</div>
+                        </div>
+                        <div class="desc">(Stoli, Soda, Zitronensaft)</div>
+                    </div>
+
+
+
+                </div>
+
+
+                <div class="section">
+                    <h1>Aperitiv/ Likör/ Schnaps</h1>
+                    
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Fireball 33%</div>
+                            <div></div>
+                            <div></div>
+                            <div class="price"> €3,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Jägermeister 35%</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€3,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Sambuca 42% </div>
+                            <div></div>
+                            <div></div>
+                            <div class="price">€3,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Jose Cuervo Tequila Gold 38%</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€3,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Tiroler Luft 18%</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€3,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Gurktaler 16%</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€3,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Amaretto Disaronno 28% (H)</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€3,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Limoncino 30%</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€3,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Freihof Marille 38%</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€3,60</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Freihof 1885 Williamsbirne 38%</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€3,60</div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Freihof Hasselnuss 22,5% (E)</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€3,60</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Averna 29%</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€3,50</div>
+                        </div>
+                    </div>
+
+                   
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Averna Sour</div>
+                            <div></div>
+                            <div class="price">4cl</div>
+                            <div class="price">€6,50</div>
+                        </div>
+                        
+                    </div>
+
+
+
+                </div>
+
+
+                <div class="section">
+                    <h1 id="heisse-getränke">HEIßE GETRÄNKE</h1>
+                    
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Kleiner Schwarzer</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price"> €2,80</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Großer Schwarzer</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€4,10</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Kleiner Brauner (G)</div>
+                           <div></div>
+                            <div></div>
+                            
+                            <div class="price">€2,90</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Großer Brauner (G)</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€4,30</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Verlängerter</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€3,30</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Cappuccino/ Melange (G)</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€4,30</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Café Latte (G)</div>
+                            <div></div>
+                            <div></div>
+                           
+                            <div class="price">€4,90</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Tee</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€4,70</div>
+                        </div>
+                        <div class="top-line">
+                            <div class="name">(Schwarz, Frucht, Pfefferminze, Grün, Kamille)</div>
+                        </div>
+                        <div class="desc">*Hafermilch und Eiskaffee auch möglich</div>
+                    </div>
+
+                    
+
+
+
+                </div>
+
+
+
+                <div class="section">
+                    <h1 id="non-alkoholische-getränke">Alkoholfreie Getränke</h1>
+                    
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Haus Limo</div>
+                            <div></div>
+                           
+                            <div class="price">0,5L</div>
+                            <div class="price"> €6,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Vöslauer Mineral Wasser (Still/ Sparkling)</div>
+                            <div></div>
+                           
+                            <div class="price">0,33L</div>
+                            <div class="price">€3,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Soda Zitrone/ Himbeer/Holunder</div>
+                            <div></div>
+                            
+                            <div class="price">0,3L</div>
+                            <div class="price">€3,00**</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Soda Zitrone/ Himbeer/ Holunder</div>
+                            <div></div>
+                            <div class="price">0,5L</div>
+                            <div class="price">€4,00**</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Apfel/ Orangensaft gespritzt</div>
+                            <div></div>
+                            <div class="price">0,3L</div>
+                            <div class="price">€3,30</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Apfel/ Orangensaft gespritzt</div>
+                            <div></div>
+                            <div class="price">0,5L</div>
+                            <div class="price">€4,30</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Coke/ Zero</div>
+                            <div></div>
+                            <div class="price">0,33L</div>
+                            <div class="price">€3,80</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Fanta/Sprite</div>
+                            <div></div>
+                            <div class="price">0,33L</div>
+                            <div class="price">€3,80</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Red Bull</div>
+                            <div></div>
+                            <div class="price">0,25L</div>
+                            <div class="price">€3,90</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Almdudler</div>
+                            <div></div>
+                            <div class="price">0,33L</div>
+                            <div class="price">€3,80</div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Spezi</div>
+                            <div></div>
+                            <div class="price">0,5L</div>
+                            <div class="price">€4,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Makava Iced Tea BIO</div>
+                           <div></div>
+                            <div class="price">0,33L</div>
+                            <div class="price">€3,70</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Club Mate</div>
+                            <div></div>
+                            <div class="price">0,33L</div>
+                            <div class="price">€3,50</div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Thomas Henry:</div>
+                        </div>
+                        <div class="top-line">
+                            <div class="name">Tonic/ Ginger Ale/ Spicy Ginger Beer/ Bitter Lemon</div>
+                            <div></div>
+                            <div class="price">0,2L</div>
+                            <div class="price">€3,10</div>
+                        </div>
+                        <div class="desc">**Jugendgetränke</div>
+                    </div>
+
+
+
+                </div>
+
+
+
+                <div class="section">
+                    <div class="item">
+                       <h1 id="täglich" style="margin-bottom: 0;">TÄGLICH</h1>
+                       <div class="desc" style="margin-top: 0;">bis 23:00</div>
+                    </div>
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Elsässer Flammkuchen</div>
+                           <div></div>
+                            <div></div>
+                            
+                            <div class="price"> €11,90</div>
+                        </div>
+                        <div class="desc">Knuspriger, hauchdünner Teig mit Crème fraîche, würzigem Speck und Zwiebeln</div>
+                        <div class="desc">(Crispy thin pastry with Crème fraîche, bacon bits and onions) (A,G)</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Huhn Flammkuchen</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€11,90</div>
+                        </div>
+                        <div class="desc">Knuspriger, hauchdünner Teig mit Käse, Hähnchen-Kebabfleisch, frische Zwiebeln</div>
+                        <div class="desc">(Crispy thin pastry, sour cream, chicken, onions, cheese) (A,G)</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Pizza Diavolo</div>
+                           <div></div>
+                            <div></div>
+                            
+                            <div class="price">€13,90</div>
+                        </div>
+                        <div class="desc">Pizzateig, Tomatensauce, Käse, Salami, Pfefferoni (scharfe Paprika), Oregano</div>
+                        <div class="desc">(Pizza dough, tomato sauce, cheese, spicy salami, hot peppers, oregano) (A,G,M)</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Pizza Salami</div>
+                           <div></div>
+                            <div></div>
+                            
+                            <div class="price">€13,90</div>
+                        </div>
+                        <div class="desc">Pizzateig, Tomatensauce, Salami, Käse, Oregano</div>
+                        <div class="desc">(Pizza dough, tomato sauce, salami, cheese, oregano) (A,G,M)</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Baguette Rustica</div>
+                           <div></div>
+                            <div></div>
+                            
+                            <div class="price">€8,90</div>
+                        </div>
+                        <div class="desc">Knuspriges französisches Weißbrot, Bèchamel-Sauce, Speck, Lauch, Raclette-Gouda-Mischung</div>
+                        <div class="desc">(French white baguette, béchamel sauce, bacon, leeks, raclette-Gouda, cheese blend) (A,G)</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Baguette Meditarrain</div>
+                           <div></div>
+                            <div></div>
+                            
+                            <div class="price">€8,90</div>
+                        </div>
+                        <div class="desc">Knuspriges französisches Weißbrot, Bèchamel-Sauce, Zucchini, Paprika, Tomaten, Hirtenkäse</div>
+                        <div class="desc">(French white baguette, béchamel sauce, zucchini, bell peppers, tomatoes, white cheese (feta-style)) (A,G)</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Suppe Des Tages</div>
+                           <div></div>
+                            <div></div>
+                            
+                            <div class="price">€5,50</div>
+                        </div>
+                        <div class="desc">(SOUP OF THE DAY) (A,G)</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Schinken-Käse/ Käse-Toast</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€5,60</div>
+                        </div>
+                        <div class="desc">(Ham and cheese/ cheese toastie) (A,G)</div>
+                    </div>
+
+                    
+
+
+
+                </div>
+
+
+
+                <div class="section">
+                    <h1>Etwas Süsses</h1>
+                    
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Brownie</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price"> €5,50</div>
+                        </div>
+                        <div class="desc">(A,C,G,H) (Kann auch aufgewärmt werden)</div>
+                        
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Kuchen Des Tages</div>
+                            <div></div>
+                            <div></div>
+                            
+                            <div class="price">€6,50</div>
+                        </div>
+                        
+                </div>
+
+
+                <div class="section">
+                    <h1 id="time">Öffnungzeiten</h1>
+                    
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">So.-Do.: 9am- 1am</div>
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price"> </div>
+                            
+                        </div>
+                        
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Fr.: 9am- 2am</div>
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price"></div>
+                            
+                        </div>
+                        
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Sa.: 10am- 2am</div>
+                            
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price"></div>
+                            
+                        </div>
+                       
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">So.: 10am- 1am</div>
+                            
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price"></div>
+                            
+                        </div>
+                       
+                    </div>
+
+                    
+
+                    
+
+
+                </div>
+
+
+                <div class="section">
+                    <h1 id="kontakt">Kontaktieren Sie Uns</h1>
+
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">Grünentorgasse 19B, 1090 Wien </div>
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price"> </div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="item">
+                        <div class="top-line">
+                            <div class="name">+43 1 953 6819</div>
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price"> </div>
+                            
+                        </div>
+                        
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div>reservieren@luxor1090.at</div>
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price"></div>
+                            
+                        </div>
+                        
+                    </div>
+
+                    <div class="item">
+                        <div class="top-line">
+                            <div>@luxor_1090</div>
+                            
+                            <div></div>
+                            <div class="price"></div>
+                            <div class="price"></div>
+                            
+                        </div>
+                       
+                    </div>
+
+                    
+
+                    
+
+                    
+
+
+                </div>
+
+            
+            
+
+
+
+           
+
+                    
+
+                    
+
+
+            </div>
+        </div>
+
+    </body>
+</html>
